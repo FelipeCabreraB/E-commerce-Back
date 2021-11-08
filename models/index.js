@@ -12,8 +12,9 @@ const sequelize = new Sequelize(
 );
 
 const User = require("./User")(sequelize, Model, DataTypes);
-const Comment = require("./Comment")(sequelize, Model, DataTypes);
-const Article = require("./Article")(sequelize, Model, DataTypes);
+const Product = require("./Product")(sequelize, Model, DataTypes);
+const Order = require("./Order")(sequelize, Model, DataTypes);
+const Admin = require("./Admin")(sequelize, Model, DataTypes);
 
 // Luego de definir los modelos, se pueden establecer relaciones
 // entre los mismos...
@@ -21,6 +22,7 @@ const Article = require("./Article")(sequelize, Model, DataTypes);
 module.exports = {
   sequelize,
   User,
-  Comment,
-  Article,
+  Product,
+  Order,
+  Admin,
 };
