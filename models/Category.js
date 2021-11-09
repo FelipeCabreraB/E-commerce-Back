@@ -1,25 +1,28 @@
 module.exports = (sequelize, Model, DataTypes) => {
-  class Order extends Model {}
+  class Category extends Model {}
 
-  Order.init(
+  Category.init(
     {
       id: {
         type: DataTypes.BIGINT.UNSIGNED,
         primaryKey: true,
         autoIncrement: true,
       },
-      quantity: {
-        type: DataTypes.INTEGER,
+      categoryName: {
+        type: DataTypes.STRING,
       },
-      statusOrder: {
+      description: {
+        type: DataTypes.STRING,
+      },
+      picture: {
         type: DataTypes.STRING,
       },
     },
     {
       sequelize,
-      modelName: "order",
+      modelName: "category",
     },
   );
 
-  return Order;
+  return Category;
 };
