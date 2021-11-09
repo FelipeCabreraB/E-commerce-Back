@@ -8,9 +8,7 @@ module.exports = (sequelize, Model, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      quantity: {
-        type: DataTypes.INTEGER,
-      },
+
       statusOrder: {
         type: DataTypes.STRING,
       },

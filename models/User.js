@@ -6,7 +6,6 @@ module.exports = (sequelize, Model, DataTypes) => {
       return await bcrypt.compare(password, this.password); // Si son iguales returna true, sino false
     }
   }
-
   User.init(
     {
       id: {
@@ -36,7 +35,6 @@ module.exports = (sequelize, Model, DataTypes) => {
         type: DataTypes.BIGINT.UNSIGNED,
       },
     },
-
     {
       sequelize,
       modelName: "user",
