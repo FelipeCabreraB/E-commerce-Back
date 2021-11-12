@@ -8,36 +8,6 @@ async function index(req, res) {}
 async function show(req, res) {}
 
 // Show the form for creating a new resource
-/* async function create(req, res) {
-  const emailCheck = await User.find({ email: req.body.data.email });
-  if (emailCheck[0]) return res.json({ error: "Email already exists" });
-  const user = await new User(req.body.data);
-
-  const { fullname } = req.body.data;
-  const usernameExists = await User.find({ fullname: fullname });
-
-  usernameExists !== null
-    ? (user.username = fullname + usernameExists.length)
-    : (user.username = fullname);
-
-  await user.save().catch((error) => console.log(error));
-
-  if (req.body.data.email && req.body.data.fullname && req.body.data.password) {
-    const token = jwt.sign(
-      {
-        id: user.id,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        address: user.address,
-        completedOrder: user.completedOrders,
-      },
-      process.env.APP_JWT_SECRET,
-    );
-    res.json({ token, id: user._id, following: [] });
-  } else {
-    res.json({ error: "All inputs are required" });
-  }
-} */
 
 async function create(req, res) {
   try {
@@ -60,7 +30,7 @@ async function create(req, res) {
       res.json({ error: "Email already exists" });
     }
   } catch (error) {
-    console.log(error);
+    console.log({ error: "Internal error, please try again later" });
   }
 }
 

@@ -20,10 +20,10 @@ async function login(req, res) {
       );
       res.json({ token, id: user.id });
     } else {
-      res.json({ error: "Please check the information is correct" });
+      res.json({ error: "Incorrect password" });
     }
   } else {
-    res.json({ error: "error 404" });
+    res.json({ error: "Email doesn´t exist" });
   }
 }
 
