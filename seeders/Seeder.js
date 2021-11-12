@@ -20,14 +20,13 @@ module.exports = async () => {
   }
 
   //SEEDER DE ACCESSORIES
- const productName
+  /*  const productName
  const description
  const characteristic1
  const characteristic2
  const characteristic3
  const price
- const picture
-
+ const picture */
 
   //SEEDER DE PRODUCTS
   const productName = ["Timbo", "Nauyaca", "Women", "Sabanera", "Boa", "Mamba Negra"];

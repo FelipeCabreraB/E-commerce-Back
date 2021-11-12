@@ -2,8 +2,7 @@ const { Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const products = await Product.findAll();
-  console.log(products);
+  const products = await Product.findAll({ where: { categoryId: req.params.categoryId } });
   res.json(products);
 }
 
