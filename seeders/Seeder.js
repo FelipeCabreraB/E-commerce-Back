@@ -20,12 +20,66 @@ module.exports = async () => {
   }
 
   //SEEDER DE PRODUCTS
-  for (let i = 0; i < 20; i++) {
+  const productName = ["Timbo", "Nauyaca", "Women", "Sabanera", "Boa", "Mamba Negra"];
+  const description = [];
+  const origin = [
+    "El salvador",
+    "Mexico, Oaxaca",
+    "Brazil, Parana, Tomazina",
+    "Guatemala, Valle de Acatenango",
+    "Rwanda, Rustiro district",
+    "Kenya, Nyeri County",
+  ];
+  const farm = [
+    "Las Nubes",
+    "Cooperative",
+    "Capricornio Cooperative",
+    "Chalabal Estrella / El general",
+    "Various coffee growers: Bugoyi CWS",
+    "Various coffee growers",
+  ];
+  const notes = [
+    "Grapefruit, cinnamon, light caramel",
+    "Vanilla, dark chocolate, light caramel, lemon",
+    "Sugar cane, honey, jasmine, fennel",
+    "Yellow plums, caramel sugar, chocolate",
+    "Lime, cocoa and sour cream",
+    "Hibiscus flower, cider, blueberry",
+  ];
+  const variety = [
+    "Red Bourbon",
+    "Catimor, Catuai",
+    "Yellow Catuai",
+    "Catimor, Catuai, Typica",
+    "Red Bourbon",
+    "Batian SL28",
+  ];
+  const height = ["1400 m", "1200 m", "650 m", "1750 m", "1500 - 1900 m", "1800 m"];
+  const process = ["Honey", "Washed", "Honey", "Washed", "Washed", "Washed"];
+  const rating = [87, 84, 86, 83, 84, 86];
+  const price = [620, 590, 620, 550, 620, 750];
+  const picture = [
+    "https://cultocafe.uy/wp-content/uploads/2021/07/Kiosco__0001_Layer-14.jpg",
+    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09426.jpg",
+    "https://cultocafe.uy/wp-content/uploads/2020/07/WOMEN.jpg",
+    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09432.jpg",
+    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09436.jpg",
+    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09435.jpg",
+  ];
+
+  for (let i = 0; i < 6; i++) {
     products.push({
-      productName: faker.lorem.word(12),
+      productName: productName[i],
       description: faker.lorem.sentence(3),
-      picture: "picture.jpg",
-      price: faker.commerce.price(),
+      origin: origin[i],
+      farm: farm[i],
+      notes: notes[i],
+      variety: variety[i],
+      height: height[i],
+      process: process[i],
+      rating: rating[i],
+      picture: picture[i],
+      price: price[i],
       stock: i + 10,
       featured: false,
       categoryId: Math.floor(Math.random() * (2 - 1 + 1)) + 1,

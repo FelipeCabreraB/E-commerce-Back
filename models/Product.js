@@ -14,11 +14,32 @@ module.exports = (sequelize, Model, DataTypes) => {
       description: {
         type: DataTypes.STRING,
       },
+      origin: {
+        type: DataTypes.STRING,
+      },
+      farm: {
+        type: DataTypes.STRING,
+      },
+      notes: {
+        type: DataTypes.STRING,
+      },
+      variety: {
+        type: DataTypes.STRING,
+      },
+      height: {
+        type: DataTypes.STRING,
+      },
+      process: {
+        type: DataTypes.STRING,
+      },
+      rating: {
+        type: DataTypes.DECIMAL(10, 2),
+      },
       picture: {
         type: DataTypes.STRING,
       },
       price: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       stock: {
         type: DataTypes.INTEGER,

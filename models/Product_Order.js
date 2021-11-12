@@ -9,6 +9,9 @@ module.exports = (sequelize, Model, DataTypes) => {
       price: {
         type: DataTypes.DECIMAL(10, 2),
       },
+      grindingType: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
