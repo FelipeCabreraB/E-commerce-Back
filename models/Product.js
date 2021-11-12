@@ -12,7 +12,7 @@ module.exports = (sequelize, Model, DataTypes) => {
         type: DataTypes.STRING,
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       origin: {
         type: DataTypes.STRING,
@@ -33,7 +33,16 @@ module.exports = (sequelize, Model, DataTypes) => {
         type: DataTypes.STRING,
       },
       rating: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.DECIMAL(10, 0),
+      },
+      accessoriesChar1: {
+        type: DataTypes.STRING,
+      },
+      accessoriesChar2: {
+        type: DataTypes.STRING,
+      },
+      accessoriesChar3: {
+        type: DataTypes.STRING,
       },
       picture: {
         type: DataTypes.STRING,

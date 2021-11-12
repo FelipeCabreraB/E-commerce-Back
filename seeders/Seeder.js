@@ -19,9 +19,26 @@ module.exports = async () => {
     });
   }
 
+  //SEEDER DE ACCESSORIES
+ const productName
+ const description
+ const characteristic1
+ const characteristic2
+ const characteristic3
+ const price
+ const picture
+
+
   //SEEDER DE PRODUCTS
   const productName = ["Timbo", "Nauyaca", "Women", "Sabanera", "Boa", "Mamba Negra"];
-  const description = [];
+  const description = [
+    "In 2005 the Santa Ana Volcano erupted for the first time in 85 years and its ashes became natural fertilizer for the entire area of El Salvador. The Las Nubes farm –with more than 100 years producing high quality coffee– benefited from this sudden change in the character of the soil, which resulted in a rich acidity in the bean, manifested in the particular “shine” of each sip.",
+    "Mexico has experienced an explosion in specialty coffee production. This is due to the excellent climatic conditions and rich volcanic soils found in the south of the country. Likewise, the country stands out for its organic coffee production, which occupies a large percentage of total production.",
+    "In 2013, in the Matão district, a group of local female producers began working with the goal of producing the highest quality coffee. By betting on unity and joint work, the group was gaining visibility and became a reference on the continent. The collective began with 15 women and today it has 24 members who are growing in recognition, while its excellent beans make their way into the world of specialty coffee.",
+    "The generous shadows of the Acatenango Valley give birth to this fascinating grain, which holds a tradition in a cup that dates back to the mid-19th century. Grown in the middle of the volcanic belt, this bean stands out for its marked acidity, which combines perfectly with the traditional chocolate edge of local coffee.",
+    "Opaced for decades by the Kenyan and Ethiopian coffee industry, Rwanda only entered the specialty coffee board in the past two decades. Quickly, its grains of floral and fruity notes at the same time, ceased to be the best kept secret in Africa, to be a mandatory stop for cuppings around the world.",
+    "The volcanic memory of the slopes of Mount Kenya marks these four varieties of the ‘Nyeri County’ region by fire. They follow a process of washing and drying in ‘African beds’ characteristic of the area, which decants into a cup of acidic notes and an intense body.",
+  ];
   const origin = [
     "El salvador",
     "Mexico, Oaxaca",
@@ -70,7 +87,7 @@ module.exports = async () => {
   for (let i = 0; i < 6; i++) {
     products.push({
       productName: productName[i],
-      description: faker.lorem.sentence(3),
+      description: description[i],
       origin: origin[i],
       farm: farm[i],
       notes: notes[i],
@@ -82,7 +99,7 @@ module.exports = async () => {
       price: price[i],
       stock: i + 10,
       featured: false,
-      categoryId: Math.floor(Math.random() * (2 - 1 + 1)) + 1,
+      categoryId: 1,
     });
   }
 
