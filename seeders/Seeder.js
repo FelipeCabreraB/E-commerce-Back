@@ -75,9 +75,9 @@ module.exports = async () => {
     productsCoff.push({
       productName: accProductName[i],
       description: accDescription[i],
-      accCharacteristic1: accCharacteristic1[i],
-      accCharacteristic2: accCharacteristic2[i],
-      accCharacteristic3: accCharacteristic3[i],
+      accessoriesChar1: accCharacteristic1[i],
+      accessoriesChar2: accCharacteristic2[i],
+      accessoriesChar3: accCharacteristic3[i],
       picture: accPicture[i],
       price: accPrice[i],
       stock: i + 10,
