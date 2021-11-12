@@ -6,7 +6,8 @@ faker.locale = "es";
 
 module.exports = async () => {
   const categories = [];
-  const products = [];
+  const productsCoff = [];
+  const productsAcc = [];
   const orders = [];
   const users = [];
 
@@ -70,7 +71,22 @@ module.exports = async () => {
     "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0010_Layer-2.jpg",
   ];
 
-  //SEEDER DE PRODUCTS
+  for (let i = 0; i < 6; i++) {
+    productsCoff.push({
+      productName: accProductName[i],
+      description: accDescription[i],
+      accCharacteristic1: accCharacteristic1[i],
+      accCharacteristic2: accCharacteristic2[i],
+      accCharacteristic3: accCharacteristic3[i],
+      picture: accPicture[i],
+      price: accPrice[i],
+      stock: i + 10,
+      featured: false,
+      categoryId: 2,
+    });
+  }
+
+  //SEEDER DE PRODUCTSCOFF
   const productName = ["Timbo", "Nauyaca", "Women", "Sabanera", "Boa", "Mamba Negra"];
   const description = [
     "In 2005 the Santa Ana Volcano erupted for the first time in 85 years and its ashes became natural fertilizer for the entire area of El Salvador. The Las Nubes farm –with more than 100 years producing high quality coffee– benefited from this sudden change in the character of the soil, which resulted in a rich acidity in the bean, manifested in the particular “shine” of each sip.",
@@ -126,7 +142,7 @@ module.exports = async () => {
   ];
 
   for (let i = 0; i < 6; i++) {
-    products.push({
+    productsCoff.push({
       productName: productName[i],
       description: description[i],
       origin: origin[i],
@@ -168,7 +184,9 @@ module.exports = async () => {
 
   await Category.bulkCreate(categories);
   console.log("[Database] Se corrió el seeder de Category.");
-  await Product.bulkCreate(products);
+  await Product.bulkCreate(productsCoff);
+  console.log("[Database] Se corrió el seeder de Product.");
+  await Product.bulkCreate(productsAcc);
   console.log("[Database] Se corrió el seeder de Product.");
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de User.");
