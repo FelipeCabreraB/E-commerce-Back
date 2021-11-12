@@ -55,7 +55,7 @@ async function create(req, res) {
         },
         process.env.APP_JWT_SECRET,
       );
-      res.json({ token });
+      res.json({ token, id: user.id });
     } else {
       res.json({ error: "Email already exists" });
     }

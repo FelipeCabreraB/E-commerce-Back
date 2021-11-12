@@ -18,7 +18,7 @@ async function login(req, res) {
         },
         process.env.APP_JWT_SECRET,
       );
-      res.json({ token });
+      res.json({ token, id: user.id });
     } else {
       res.json({ error: "Please check the information is correct" });
     }
