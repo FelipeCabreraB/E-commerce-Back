@@ -2,6 +2,6 @@ const publicRoutes = require("./publicRoutes");
 const adminRoutes = require("./adminRoutes");
 
 module.exports = (app) => {
-  app.use(publicRoutes);
-  app.use("/admin", adminRoutes);
+  app.use("/api", publicRoutes);
+  app.use("/api/admin", adminRoutes);
 };
