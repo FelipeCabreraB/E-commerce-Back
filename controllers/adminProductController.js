@@ -2,15 +2,12 @@ const { Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const products = await Product.findAll({ where: { categoryId: req.params.categoryId } });
+  const products = await Product.findAll();
   res.json(products);
 }
 
 // Display the specified resource.
-async function show(req, res) {
-  const product = await Product.findOne({ where: { productName: req.params.productName } });
-  res.json(product);
-}
+async function show(req, res) {}
 
 // Show the form for creating a new resource
 async function create(req, res) {}
