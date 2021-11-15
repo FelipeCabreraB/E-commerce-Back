@@ -6,9 +6,13 @@ const adminOrderController = require("../controllers/adminOrderController");
 const adminUserController = require("../controllers/adminUserController")
 
 // Rutas del Admin:
-// ...
 
+// Product Routes
 adminRouter.get("/products", adminProductController.index);
+adminRouter.get("/product/:productId", adminProductController.show);
+adminRouter.patch("/product/update", adminProductController.update);
+
+//Category Routes
 adminRouter.get("/categories", adminCategoryController.index);
 adminRouter.get("/orders", adminOrderController.index);
 adminRouter.get("/users", adminUserController.index);
