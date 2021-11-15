@@ -34,6 +34,9 @@ module.exports = (sequelize, Model, DataTypes) => {
       completedOrders: {
         type: DataTypes.BIGINT.UNSIGNED,
       },
+      role: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

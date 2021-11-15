@@ -15,10 +15,11 @@ async function login(req, res) {
         {
           id: user.id,
           email: user.email,
+          role: user.role,
         },
         process.env.APP_JWT_SECRET,
       );
-      res.json({ token, id: user.id });
+      res.json({ token, id: user.id, role: user.role });
     } else {
       res.json({ error: "Incorrect password" });
     }
