@@ -1,5 +1,5 @@
 const faker = require("faker");
-const { Category, Admin, Order, Product, User } = require("../models");
+const { Category, Admin, Order, Product, User, Product_Order } = require("../models");
 const bcrypt = require("bcryptjs");
 
 faker.locale = "es";
@@ -10,6 +10,7 @@ module.exports = async () => {
   const productsAcc = [];
   const orders = [];
   const users = [];
+  const productOrders = [];
 
   //SEEDER DE CATEGORIES
   for (let i = 0; i < 2; i++) {
@@ -161,11 +162,24 @@ module.exports = async () => {
   }
 
   //SEEDER DE ORDERS
-  for (let i = 0; i < 10; i++) {
+  const statusOrder = ["Completed", "Pending", "Completed", "Pending", "Completed", "Pending"];
+
+  for (let i = 0; i < 6; i++) {
     orders.push({
       quantity: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
-      statusOrder: faker.lorem.word(10),
-      userId: Math.floor(Math.random() * (10 - 1 + 1)) + 1,
+      statusOrder: statusOrder[i],
+      userId: Math.floor(Math.random() * (6 - 1 + 1)) + 1,
+    });
+  }
+
+  //SEEDER DE PRODUCT ORDERS
+  for (let i = 0; i < 6; i++) {
+    productOrders.push({
+      quantity: 5,
+      price: "20",
+      grindingType: "20",
+      productId: 5,
+      orderId: "20",
     });
   }
 
@@ -182,6 +196,7 @@ module.exports = async () => {
       role: "client",
     });
   }
+
   //CREACIÓN DEL ADMIN
   const admin = {
     firstname: "Admin",
@@ -205,5 +220,7 @@ module.exports = async () => {
   await User.create(admin);
   console.log("[Database] Se creó el Admin.");
   await Order.bulkCreate(orders);
+  console.log("[Database] Se corrió el seeder de Order.");
+  await Product_Order.bulkCreate(orders);
   console.log("[Database] Se corrió el seeder de Order.");
 };
