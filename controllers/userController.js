@@ -15,17 +15,18 @@ async function create(req, res) {
     const password = req.body.data.passwordReg;
     const [user, created] = await User.findOrCreate({
       where: { email },
-      defaults: { email, password },
+      defaults: { email, password, role: "client" },
     });
     if (created) {
       const token = jwt.sign(
         {
           id: user.id,
           email: user.email,
+          role: user.role,
         },
         process.env.APP_JWT_SECRET,
       );
-      res.json({ token, id: user.id });
+      res.json({ token, id: user.id, role: user.role });
     } else {
       res.json({ error: "Email already exists" });
     }

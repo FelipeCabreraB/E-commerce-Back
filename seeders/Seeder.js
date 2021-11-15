@@ -179,8 +179,20 @@ module.exports = async () => {
       address: faker.address.streetAddress(),
       phone: 6018473,
       completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+      role: "client",
     });
   }
+  //CREACIÓN DEL ADMIN
+  const admin = {
+    firstname: "Admin",
+    lastname: "AdminLastname",
+    email: "admin@admin.com",
+    password: "123456",
+    address: faker.address.streetAddress(),
+    phone: 6018473,
+    completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+    role: "admin",
+  };
 
   await Category.bulkCreate(categories);
   console.log("[Database] Se corrió el seeder de Category.");
@@ -190,6 +202,8 @@ module.exports = async () => {
   console.log("[Database] Se corrió el seeder de Product.");
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de User.");
+  await User.create(admin);
+  console.log("[Database] Se creó el Admin.");
   await Order.bulkCreate(orders);
   console.log("[Database] Se corrió el seeder de Order.");
 };
