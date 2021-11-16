@@ -172,17 +172,6 @@ module.exports = async () => {
     });
   }
 
-  //SEEDER DE PRODUCT ORDERS
-  for (let i = 0; i < 6; i++) {
-    productOrders.push({
-      quantity: 5,
-      price: "20",
-      grindingType: "20",
-      productId: 5,
-      orderId: "20",
-    });
-  }
-
   //SEEDER DE USER
   for (let i = 0; i < 10; i++) {
     users.push({
@@ -209,6 +198,32 @@ module.exports = async () => {
     role: "admin",
   };
 
+  //SEEDER DE PRODUCT ORDERS
+  const grinding_type = [
+    "Cold Brew",
+    "Grain",
+    "Aeroress",
+    "Turkish coffee",
+    "Chemex",
+    "Expresso",
+    "Filtered",
+    "French",
+    "Moka",
+  ];
+
+  const product_id = [3, 2, 1, 7, 8, 9];
+  const product_price = [4990, 2590, 2590, 620, 590, 620];
+
+  for (let i = 0; i < 6; i++) {
+    productOrders.push({
+      quantity: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+      productId: product_id[i],
+      price: product_price[i],
+      grindingType: grinding_type[i],
+      orderId: Math.floor(Math.random() * (6 - 1 + 1)) + 1,
+    });
+  }
+
   await Category.bulkCreate(categories);
   console.log("[Database] Se corrió el seeder de Category.");
   await Product.bulkCreate(productsCoff);
@@ -221,6 +236,6 @@ module.exports = async () => {
   console.log("[Database] Se creó el Admin.");
   await Order.bulkCreate(orders);
   console.log("[Database] Se corrió el seeder de Order.");
-  await Product_Order.bulkCreate(orders);
-  console.log("[Database] Se corrió el seeder de Order.");
+  await Product_Order.bulkCreate(productOrders);
+  console.log("[Database] Se corrió el seeder de Product_Order.");
 };

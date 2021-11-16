@@ -27,7 +27,6 @@ async function update(req, res) {
   const product = await Product.findOne({
     where: { id: updatedProduct.id },
   });
-  console.log(product);
   product.update({
     productName: updatedProduct.productName,
     description: updatedProduct.description,
