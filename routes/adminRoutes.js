@@ -42,11 +42,36 @@ adminRouter.delete(
 );
 
 //Category Routes
-adminRouter.get("/categories", adminCategoryController.index);
-adminRouter.get("/categories/:categoryId", adminCategoryController.show);
-adminRouter.post("/categories", adminCategoryController.store);
-adminRouter.patch("/categories", adminCategoryController.update);
-adminRouter.delete("/categories", adminCategoryController.destroy);
+adminRouter.get(
+  "/categories",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminCategoryController.index,
+);
+adminRouter.get(
+  "/categories/:categoryId",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminCategoryController.show,
+);
+adminRouter.post(
+  "/categories",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminCategoryController.store,
+);
+adminRouter.patch(
+  "/categories",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminCategoryController.update,
+);
+adminRouter.delete(
+  "/categories",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminCategoryController.destroy,
+);
 
 adminRouter.get("/orders", adminOrderController.index);
 adminRouter.get("/users", adminUserController.index);
