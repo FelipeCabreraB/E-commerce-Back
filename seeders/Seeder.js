@@ -221,6 +221,6 @@ module.exports = async () => {
   console.log("[Database] Se creó el Admin.");
   await Order.bulkCreate(orders);
   console.log("[Database] Se corrió el seeder de Order.");
-  await Product_Order.bulkCreate(orders);
-  console.log("[Database] Se corrió el seeder de Order.");
+  /*  await Product_Order.bulkCreate(orders);
+  console.log("[Database] Se corrió el seeder de Order."); */
 };
