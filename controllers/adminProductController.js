@@ -24,7 +24,39 @@ async function show(req, res) {
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  try {
+    const newProduct = req.body.data;
+    const product = {
+      productName: newProduct.productName,
+      description: newProduct.description,
+      origin: newProduct.origin,
+      farm: newProduct.farm,
+      notes: newProduct.notes,
+      variety: newProduct.variety,
+      height: newProduct.height,
+      process: newProduct.process,
+      rating: newProduct.rating,
+      accessoriesChar1: newProduct.accessoriesChar1,
+      accessoriesChar2: newProduct.accessoriesChar2,
+      accessoriesChar3: newProduct.accessoriesChar3,
+      price: newProduct.price,
+      stock: newProduct.stock,
+      category: newProduct.category,
+      featured: newProduct.featured,
+    };
+    await Product.create(product);
+    if (product) {
+      res.json({ success: `Product: (name: ${product.productName}) created correctly` });
+    } else {
+      res.json({
+        error: "Error please check the submitted information is in the right format.",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
@@ -55,7 +87,7 @@ async function update(req, res) {
       featured: updatedProduct.featured,
     });
     if (product) {
-      res.json({ success: "Product updated correctly" });
+      res.json({ success: `Product id: ${product}, updated correctly` });
     } else {
       res.json({
         error: "Product not found, please make sure the product you´re trying to update exist",

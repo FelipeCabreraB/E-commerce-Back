@@ -10,6 +10,7 @@ const adminUserController = require("../controllers/adminUserController");
 // Product Routes
 adminRouter.get("/products", adminProductController.index);
 adminRouter.get("/products/:productId", adminProductController.show);
+adminRouter.post("/products", adminProductController.store);
 adminRouter.patch("/products", adminProductController.update);
 adminRouter.delete("/products", adminProductController.destroy);
 
