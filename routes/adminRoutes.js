@@ -8,6 +8,11 @@ const validateAdmin = require("../middlewares/validateAdmin");
 const checkJwt = require("express-jwt");
 
 // Rutas del Admin:
+adminRouter.get("/users", adminUserController.index);
+adminRouter.get("/users/:userId", adminUserController.show);
+adminRouter.post("/users", adminUserController.store);
+adminRouter.patch("/users", adminUserController.update);
+adminRouter.delete("/users", adminUserController.destroy);
 
 // Product Routes
 adminRouter.get(
