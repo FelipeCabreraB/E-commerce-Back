@@ -16,6 +16,7 @@ publicRouter.post("/register", userController.create);
 //Products
 
 publicRouter.get("/products/:categoryId", productController.index);
+publicRouter.get("/featured/products", productController.indexFeatured);
 publicRouter.get("/product/:productName", productController.show);
 
 module.exports = publicRouter;

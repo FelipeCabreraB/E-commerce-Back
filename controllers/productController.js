@@ -6,6 +6,12 @@ async function index(req, res) {
   res.json(products);
 }
 
+// Display a listing of the resource.
+async function indexFeatured(req, res) {
+  const featuredProducts = await Product.findAll({ where: { featured: true } });
+  res.json(featuredProducts);
+}
+
 // Display the specified resource.
 async function show(req, res) {
   const product = await Product.findOne({ where: { productName: req.params.productName } });
@@ -32,6 +38,7 @@ async function destroy(req, res) {}
 
 module.exports = {
   index,
+  indexFeatured,
   show,
   create,
   store,
