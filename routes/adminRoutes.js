@@ -9,9 +9,9 @@ const adminUserController = require("../controllers/adminUserController");
 
 // Product Routes
 adminRouter.get("/products", adminProductController.index);
-adminRouter.get("/product/:productId", adminProductController.show);
-adminRouter.patch("/product/update", adminProductController.update);
-adminRouter.delete("/product/delete", adminProductController.destroy);
+adminRouter.get("/products/:productId", adminProductController.show);
+adminRouter.patch("/products", adminProductController.update);
+adminRouter.delete("/products", adminProductController.destroy);
 
 //Category Routes
 adminRouter.get("/categories", adminCategoryController.index);
