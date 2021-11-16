@@ -16,6 +16,11 @@ adminRouter.delete("/products", adminProductController.destroy);
 
 //Category Routes
 adminRouter.get("/categories", adminCategoryController.index);
+adminRouter.get("/categories/:categoryId", adminCategoryController.show);
+adminRouter.post("/categories", adminCategoryController.store);
+adminRouter.patch("/categories", adminCategoryController.update);
+adminRouter.delete("/categories", adminCategoryController.destroy);
+
 adminRouter.get("/orders", adminOrderController.index);
 adminRouter.get("/users", adminUserController.index);
 
