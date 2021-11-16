@@ -43,8 +43,15 @@ async function update(req, res) {
     price: updatedProduct.price,
     stock: updatedProduct.stock,
     category: updatedProduct.category,
+    featured: updatedProduct.featured,
   });
-  res.json("Product updated correctly");
+  if (product) {
+    res.json({ success: "Product updated correctly" });
+  } else {
+    res.json({
+      error: "Product not found, please make sure the product you´re trying to update exist",
+    });
+  }
 }
 
 // Remove the specified resource from storage.
