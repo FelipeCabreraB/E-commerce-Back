@@ -7,14 +7,39 @@ const adminUserController = require("../controllers/adminUserController");
 const validateAdmin = require("../middlewares/validateAdmin");
 const checkJwt = require("express-jwt");
 
-// Rutas del Admin:
-adminRouter.get("/users", adminUserController.index);
-adminRouter.get("/users/:userId", adminUserController.show);
-adminRouter.post("/users", adminUserController.store);
-adminRouter.patch("/users", adminUserController.update);
-adminRouter.delete("/users", adminUserController.destroy);
+//----- Rutas del Admin -----:
+adminRouter.get(
+  "/users",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminUserController.index,
+);
+adminRouter.get(
+  "/users/:userId",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminUserController.show,
+);
+adminRouter.post(
+  "/users",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminUserController.store,
+);
+adminRouter.patch(
+  "/users",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminUserController.update,
+);
+adminRouter.delete(
+  "/users",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminUserController.destroy,
+);
 
-// Product Routes
+//----- Product Routes -----:
 adminRouter.get(
   "/products",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
@@ -46,7 +71,7 @@ adminRouter.delete(
   adminProductController.destroy,
 );
 
-//Category Routes
+//----- Category Routes -----:
 adminRouter.get(
   "/categories",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
