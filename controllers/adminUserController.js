@@ -12,14 +12,47 @@ async function index(req, res) {
 }
 
 // Display the specified resource.
-async function show(req, res) {}
+async function show(req, res) {
+  try {
+    const users = await User.findOne({ where: { id: req.params.userId } });
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Show the form for creating a new resource
 
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  try {
+    const newUser = req.body.data;
+    const user = {
+      firstname: newUser.firstname,
+      lastname: newUser.lastname,
+      email: newUser.email,
+      address: newUser.address,
+      phone: newUser.phone,
+      role: newUser.role,
+      password: newUser.password,
+    };
+
+    await User.create(user);
+    if (user) {
+      res.json({
+        success: `User: ${user.firstname} ${user.lastname}) created correctly`,
+      });
+    } else {
+      res.json({
+        error: "Error please check the submitted information is in the right format.",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
