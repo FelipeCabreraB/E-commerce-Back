@@ -41,13 +41,13 @@ adminRouter.delete(
 
 //----- Product Routes -----:
 adminRouter.get(
-  "/products",
+  "/products/:page",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   validateAdmin,
   adminProductController.index,
 );
 adminRouter.get(
-  "/products/:productId",
+  "/product/:productId",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   validateAdmin,
   adminProductController.show,

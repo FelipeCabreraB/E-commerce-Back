@@ -3,8 +3,17 @@ const { Product } = require("../models");
 // Display a listing of the resource.
 async function index(req, res) {
   try {
-    const products = await Product.findAll();
-    res.json(products);
+    const productPage = Number(req.params.page);
+    const productsPerPage = 3; //Define the number of products you want to see per page
+    const numberOfProducts = await Product.count();
+    const numberOfPages = Math.ceil(numberOfProducts / productsPerPage);
+
+    products = await Product.findAll({
+      limit: productsPerPage,
+      offset: (productPage - 1) * productsPerPage,
+    });
+
+    res.json({ products, numberOfPages });
   } catch (error) {
     console.log(error);
   }
