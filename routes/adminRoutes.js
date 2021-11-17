@@ -9,13 +9,13 @@ const checkJwt = require("express-jwt");
 
 //----- Rutas del Admin -----:
 adminRouter.get(
-  "/users",
+  "/users/:page",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   validateAdmin,
   adminUserController.index,
 );
 adminRouter.get(
-  "/users/:userId",
+  "/user/:userId",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   validateAdmin,
   adminUserController.show,

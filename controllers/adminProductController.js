@@ -8,7 +8,7 @@ async function index(req, res) {
     const numberOfProducts = await Product.count();
     const numberOfPages = Math.ceil(numberOfProducts / productsPerPage);
 
-    products = await Product.findAll({
+    const products = await Product.findAll({
       limit: productsPerPage,
       offset: (productPage - 1) * productsPerPage,
     });

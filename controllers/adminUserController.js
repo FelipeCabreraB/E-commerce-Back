@@ -4,8 +4,19 @@ const jwt = require("jsonwebtoken");
 // Display a listing of the resource.
 async function index(req, res) {
   try {
-    const users = await User.findAll();
-    res.json(users);
+    const usersPage = Number(req.params.page);
+    const usersPerPage = 3; //Define the number of users you want to see per page
+    const numberOfUsers = await User.count();
+    const numberOfPages = Math.ceil(numberOfUsers / usersPerPage);
+
+    const users = await User.findAll({
+      limit: usersPerPage,
+      offset: (usersPage - 1) * usersPerPage,
+    });
+
+    console.log(users);
+
+    res.json({ users, numberOfPages });
   } catch (error) {
     console.log(error);
   }
@@ -15,6 +26,8 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const users = await User.findOne({ where: { id: req.params.userId } });
+
+    console.log(users);
     res.json(users);
   } catch (error) {
     console.log(error);
