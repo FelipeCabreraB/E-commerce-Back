@@ -4,6 +4,7 @@ const userController = require("../controllers/userController");
 const authController = require("../controllers/authController");
 const productController = require("../controllers/productController");
 const checkJwt = require("express-jwt");
+const orderController = require("../controllers/orderController");
 
 // Rutas del Públicas:
 // ...
@@ -25,9 +26,16 @@ publicRouter.patch(
 );
 
 //Products
+// Products
 
 publicRouter.get("/products/:categoryId", productController.index);
 publicRouter.get("/featured/products", productController.indexFeatured);
 publicRouter.get("/product/:productName", productController.show);
+
+publicRouter.get("/orders/:orderId", productController.show);
+
+// Orders
+
+publicRouter.post("/orders", orderController.store);
 
 module.exports = publicRouter;
