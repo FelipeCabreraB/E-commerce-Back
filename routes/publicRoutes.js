@@ -5,6 +5,8 @@ const authController = require("../controllers/authController");
 const productController = require("../controllers/productController");
 const orderController = require("../controllers/orderController");
 const checkJwt = require("express-jwt");
+const checkJwt = require("express-jwt");
+const orderController = require("../controllers/orderController");
 
 // Rutas del Públicas:
 // ...
@@ -14,7 +16,19 @@ const checkJwt = require("express-jwt");
 publicRouter.post("/login", authController.login);
 publicRouter.post("/register", userController.create);
 
+publicRouter.get(
+  "/user/:userId",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  userController.show,
+);
+publicRouter.patch(
+  "/users",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  userController.update,
+);
+
 //Products
+// Products
 
 publicRouter.get("/products/:categoryId", productController.index);
 publicRouter.get("/featured/products", productController.indexFeatured);
@@ -25,5 +39,10 @@ publicRouter.get(
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   orderController.index,
 );
+publicRouter.get("/orders/:orderId", productController.show);
+
+// Orders
+
+publicRouter.post("/orders", orderController.store);
 
 module.exports = publicRouter;
