@@ -3,17 +3,8 @@ const { Product_Order } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const orders = await Order.findAll({
-    where: { userId: [req.user.id] },
-  });
-  const ordersId = [];
-  for (const order of orders) {
-    ordersId.push(order.id);
-  }
-  const productsOrder = await Product_Order.findAll({
-    where: { orderId: ordersId },
-  });
-  res.json({ productsOrder, orders });
+  const products = await Product.findAll({ where: { categoryId: req.params.categoryId } });
+  res.json(products);
 }
 
 // Display a listing of the resource.
@@ -36,17 +27,10 @@ async function store(req, res) {
   const cart = req.body.cart;
   const userId = req.body.userId;
   const order = { statusOrder: "Pending", userId: userId };
-  await Order.create(order);
-
-  const createdOrder = await Order.findOne({
-    where: { userId: userId },
-    order: [["createdAt", "DESC"]],
-  });
-
-  const productOrder = [];
+  const createdOrder = await Order.create(order);
 
   for (const item of cart) {
-    productOrder.push({
+    await Product_Order.create({
       quantity: item.quantity,
       price: item.price,
       grindingType: item.grindingType,
@@ -54,7 +38,9 @@ async function store(req, res) {
       productId: item.id,
     });
   }
-  await Product_Order.bulkCreate(productOrder);
+  /*   console.log("productOrder: ", productOrder);
+
+  await Product_Order.create(productOrder); */
 }
 
 // Show the form for editing the specified resource.
