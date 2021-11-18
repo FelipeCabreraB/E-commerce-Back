@@ -35,7 +35,7 @@ async function create(req, res) {}
 // Store a newly created resource in storage.
 async function store(req, res) {
   try {
-    const newProduct = req.body.data;
+    const newProduct = req.body;
     const product = {
       productName: newProduct.productName,
       description: newProduct.description,
@@ -73,7 +73,7 @@ async function edit(req, res) {}
 // Update the specified resource in storage.
 async function update(req, res) {
   try {
-    const updatedProduct = req.body.data;
+    const updatedProduct = req.body;
     const product = await Product.findOne({
       where: { id: updatedProduct.id },
     });
@@ -95,8 +95,9 @@ async function update(req, res) {
       category: updatedProduct.category,
       featured: updatedProduct.featured,
     });
+
     if (product) {
-      res.json({ success: `Product id: ${product}, updated correctly` });
+      res.json({ success: `Product id: ${product.id}, updated correctly` });
     } else {
       res.json({
         error: "Product not found, please make sure the product you´re trying to update exist",

@@ -8,6 +8,7 @@ async function index(req, res) {
 
 // Display the specified resource.
 async function show(req, res) {
+  console.log(req.params.categoryId);
   try {
     const category = await Category.findOne({ where: { id: req.params.categoryId } });
     res.json(category);
@@ -22,7 +23,7 @@ async function create(req, res) {}
 // Store a newly created resource in storage.
 async function store(req, res) {
   try {
-    const newCategory = req.body.data;
+    const newCategory = req.body;
     const category = {
       categoryName: newCategory.categoryName,
       description: newCategory.description,
@@ -44,7 +45,7 @@ async function store(req, res) {
 // Update the specified resource in storage.
 async function update(req, res) {
   try {
-    const updatedCategory = req.body.data;
+    const updatedCategory = req.body;
     const category = await Category.findOne({
       where: { id: updatedCategory.id },
     });
@@ -54,7 +55,7 @@ async function update(req, res) {
       picture: updatedCategory.picture,
     });
     if (category) {
-      res.json({ success: `Category id: ${category}, updated correctly` });
+      res.json({ success: `Category id: ${category.id}, updated correctly` });
     } else {
       res.json({
         error: "Category not found, please make sure the category you´re trying to update exist",

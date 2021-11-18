@@ -13,9 +13,6 @@ async function index(req, res) {
       limit: usersPerPage,
       offset: (usersPage - 1) * usersPerPage,
     });
-
-    console.log(users);
-
     res.json({ users, numberOfPages });
   } catch (error) {
     console.log(error);
@@ -26,8 +23,6 @@ async function index(req, res) {
 async function show(req, res) {
   try {
     const users = await User.findOne({ where: { id: req.params.userId } });
-
-    console.log(users);
     res.json(users);
   } catch (error) {
     console.log(error);
@@ -41,7 +36,7 @@ async function create(req, res) {}
 // Store a newly created resource in storage.
 async function store(req, res) {
   try {
-    const newUser = req.body.data;
+    const newUser = req.body;
     const user = {
       firstname: newUser.firstname,
       lastname: newUser.lastname,
@@ -73,7 +68,7 @@ async function edit(req, res) {}
 // Update the specified resource in storage.
 async function update(req, res) {
   try {
-    const updateUser = req.body.data;
+    const updateUser = req.body;
     const user = await User.findOne({
       where: { id: updateUser.id },
     });
@@ -86,7 +81,7 @@ async function update(req, res) {
       role: updateUser.role,
     });
     if (user) {
-      res.json({ success: "User updated correctly" });
+      res.json({ success: `User id: ${user.id}, updated correctly` });
     } else {
       res.json({
         error: "User not found, please make sure the user you are trying to update exist",
