@@ -1,9 +1,19 @@
 const { Order } = require("../models");
+const { Product_Order } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const products = await Product.findAll({ where: { categoryId: req.params.categoryId } });
-  res.json(products);
+  const orders = await Order.findAll({
+    where: { userId: [req.user.id] },
+  });
+  const ordersId = [];
+  for (const order of orders) {
+    ordersId.push(order.id);
+  }
+  const productsOrder = await Product_Order.findAll({
+    where: { orderId: ordersId },
+  });
+  res.json({ productsOrder, orders });
 }
 
 // Display a listing of the resource.
