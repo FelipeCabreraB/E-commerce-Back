@@ -1,5 +1,6 @@
 const { Order } = require("../models");
 const { Product_Order } = require("../models");
+const { Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -31,7 +32,7 @@ async function index(req, res) {
       }
     }
   }
-  console.log(orders2);
+
   const arrayHashmap = orders2.reduce((obj, item) => {
     obj[item.orderId]
       ? ((obj[item.orderId].totalPrice += item.totalPrice),
@@ -66,18 +67,47 @@ async function store(req, res) {
     order: [["createdAt", "DESC"]],
   });
 
-  const productOrder = [];
+  const preProductOrder = [];
 
   for (const item of cart) {
-    productOrder.push({
+    preProductOrder.push({
       quantity: item.quantity,
       price: item.price,
-      grindingType: item.grindingType,
       orderId: createdOrder.id,
       productId: item.id,
     });
   }
+
+  const arrayHashmap = preProductOrder.reduce((obj, item) => {
+    obj[item.productId]
+      ? ((obj[item.productId].price += item.price), (obj[item.productId].quantity += item.quantity))
+      : (obj[item.productId] = { ...item });
+    return obj;
+  }, {});
+
+  const productOrder = Object.values(arrayHashmap);
+
   await Product_Order.bulkCreate(productOrder);
+
+  const productsId = [];
+
+  for (const product of productOrder) {
+    productsId.push(product.productId);
+  }
+
+  const products = await Product.findAll({
+    where: { id: productsId },
+  });
+
+  for (let i = 0; i < products.length; i++) {
+    for (let x = 0; x < productOrder.length; x++) {
+      if (products[i].id === productOrder[x].productId) {
+        products[i].update({ stock: products[i].stock - productOrder[x].quantity });
+      }
+    }
+  }
+
+  res.json({ success: "Order completed correctly" });
 }
 
 // Show the form for editing the specified resource.
