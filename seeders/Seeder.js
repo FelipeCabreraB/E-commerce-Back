@@ -72,8 +72,10 @@ module.exports = async () => {
     "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0010_Layer-2.jpg",
   ];
 
+  const featuredAcc = [false, false, false, true, false, false];
+
   for (let i = 0; i < 6; i++) {
-    productsCoff.push({
+    productsAcc.push({
       productName: accProductName[i],
       description: accDescription[i],
       accessoriesChar1: accCharacteristic1[i],
@@ -82,7 +84,7 @@ module.exports = async () => {
       picture: accPicture[i],
       price: accPrice[i],
       stock: i + 10,
-      featured: false,
+      featured: featuredAcc[i],
       categoryId: 2,
     });
   }
@@ -142,6 +144,8 @@ module.exports = async () => {
     "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09435.jpg",
   ];
 
+  const featuredCoff = [true, false, true, true, false, true];
+
   for (let i = 0; i < 6; i++) {
     productsCoff.push({
       productName: productName[i],
@@ -156,7 +160,7 @@ module.exports = async () => {
       picture: picture[i],
       price: price[i],
       stock: i + 10,
-      featured: false,
+      featured: featuredCoff[i],
       categoryId: 1,
     });
   }
@@ -227,9 +231,9 @@ module.exports = async () => {
   await Category.bulkCreate(categories);
   console.log("[Database] Se corrió el seeder de Category.");
   await Product.bulkCreate(productsCoff);
-  console.log("[Database] Se corrió el seeder de Product.");
+  console.log("[Database] Se corrió el seeder de ProductCoff.");
   await Product.bulkCreate(productsAcc);
-  console.log("[Database] Se corrió el seeder de Product.");
+  console.log("[Database] Se corrió el seeder de ProductAcc.");
   await User.bulkCreate(users);
   console.log("[Database] Se corrió el seeder de User.");
   await User.create(admin);

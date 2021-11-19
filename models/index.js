@@ -15,7 +15,6 @@ const sequelize = new Sequelize(
 const User = require("./User")(sequelize, Model, DataTypes);
 const Product = require("./Product")(sequelize, Model, DataTypes);
 const Order = require("./Order")(sequelize, Model, DataTypes);
-const Admin = require("./Admin")(sequelize, Model, DataTypes);
 const Category = require("./Category")(sequelize, Model, DataTypes);
 const Product_Order = require("./Product_Order")(sequelize, Model, DataTypes);
 
@@ -36,7 +35,6 @@ module.exports = {
   User,
   Product,
   Order,
-  Admin,
   Category,
   Product_Order,
 };
