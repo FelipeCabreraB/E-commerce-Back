@@ -5,8 +5,6 @@ const authController = require("../controllers/authController");
 const productController = require("../controllers/productController");
 const orderController = require("../controllers/orderController");
 const checkJwt = require("express-jwt");
-const checkJwt = require("express-jwt");
-const orderController = require("../controllers/orderController");
 
 // Rutas del Públicas:
 // ...

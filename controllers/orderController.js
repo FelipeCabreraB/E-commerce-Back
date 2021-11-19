@@ -13,20 +13,49 @@ async function index(req, res) {
   const productsOrder = await Product_Order.findAll({
     where: { orderId: ordersId },
   });
-  res.json({ productsOrder, orders });
-}
 
-// Display a listing of the resource.
-async function indexFeatured(req, res) {
-  const featuredProducts = await Product.findAll({ where: { featured: true } });
-  res.json(featuredProducts);
+  const orders1 = [];
+
+  for (order of orders) {
+    orders1.push({ orderId: order.id, orderStatus: order.statusOrder });
+  }
+
+  let orders2 = [];
+
+  for (let i = 0; i < orders.length; i++) {
+    for (let x = 0; x < productsOrder.length; x++) {
+      if (orders[i].id == productsOrder[x].orderId) {
+        if (
+          orders2.some((product) => {
+            return product.orderId === orders[i].id;
+          })
+        ) {
+        }
+        orders2.push({
+          orderId: orders[i].id,
+          orderStatus: orders[i].statusOrder,
+          totalPrice: productsOrder[x].quantity * productsOrder[x].price,
+          quantity: productsOrder[x].quantity,
+        });
+      }
+    }
+  }
+
+  const arrayHashmap = orders2.reduce((obj, item) => {
+    obj[item.orderId]
+      ? ((obj[item.orderId].totalPrice += item.totalPrice),
+        (obj[item.orderId].quantity += item.quantity))
+      : (obj[item.orderId] = { ...item });
+    return obj;
+  }, {});
+
+  const orderList = Object.values(arrayHashmap);
+
+  res.json(orderList);
 }
 
 // Display the specified resource.
-async function show(req, res) {
-  const product = await Product.findOne({ where: { productName: req.params.productName } });
-  res.json(product);
-}
+async function show(req, res) {}
 
 // Show the form for creating a new resource
 async function create(req, res) {}
@@ -36,12 +65,7 @@ async function store(req, res) {
   const cart = req.body.cart;
   const userId = req.body.userId;
   const order = { statusOrder: "Pending", userId: userId };
-  await Order.create(order);
-
-  const createdOrder = await Order.findOne({
-    where: { userId: userId },
-    order: [["createdAt", "DESC"]],
-  });
+  const createdOrder = await Order.create(order);
 
   const productOrder = [];
 
