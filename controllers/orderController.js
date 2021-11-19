@@ -14,28 +14,19 @@ async function index(req, res) {
     where: { orderId: ordersId },
   });
 
-  const orders1 = [];
-
-  for (order of orders) {
-    orders1.push({ orderId: order.id, orderStatus: order.statusOrder });
-  }
-
   let orders2 = [];
 
   for (let i = 0; i < orders.length; i++) {
     for (let x = 0; x < productsOrder.length; x++) {
       if (orders[i].id == productsOrder[x].orderId) {
-        if (
-          orders2.some((product) => {
-            return product.orderId === orders[i].id;
-          })
-        ) {
+        {
         }
         orders2.push({
           orderId: orders[i].id,
           orderStatus: orders[i].statusOrder,
           totalPrice: productsOrder[x].quantity * productsOrder[x].price,
           quantity: productsOrder[x].quantity,
+          createdAt: orders[i].createdAt,
         });
       }
     }
