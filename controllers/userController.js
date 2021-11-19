@@ -1,5 +1,6 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 // Display a listing of the resource.
 async function index(req, res) {}
@@ -63,6 +64,8 @@ async function update(req, res) {
       address: updatedUser.address,
       phone: updatedUser.phone,
       role: updatedUser.role,
+      // password: updatedUser.password,
+      password: await bcrypt.hash(user.password, 10),
     });
     // console.log(user);
     if (user) {

@@ -31,7 +31,7 @@ async function index(req, res) {
       }
     }
   }
-
+  console.log(orders2);
   const arrayHashmap = orders2.reduce((obj, item) => {
     obj[item.orderId]
       ? ((obj[item.orderId].totalPrice += item.totalPrice),
