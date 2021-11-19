@@ -55,7 +55,10 @@ async function index(req, res) {
 }
 
 // Display the specified resource.
-async function show(req, res) {}
+async function show(req, res) {
+  const product = await Product.findOne({ where: { productName: req.params.productName } });
+  res.json(product);
+}
 
 // Show the form for creating a new resource
 async function create(req, res) {}
@@ -65,7 +68,12 @@ async function store(req, res) {
   const cart = req.body.cart;
   const userId = req.body.userId;
   const order = { statusOrder: "Pending", userId: userId };
-  const createdOrder = await Order.create(order);
+  await Order.create(order);
+
+  const createdOrder = await Order.findOne({
+    where: { userId: userId },
+    order: [["createdAt", "DESC"]],
+  });
 
   const productOrder = [];
 
@@ -95,7 +103,6 @@ async function destroy(req, res) {}
 
 module.exports = {
   index,
-  indexFeatured,
   show,
   create,
   store,
