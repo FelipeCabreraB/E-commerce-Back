@@ -103,6 +103,13 @@ adminRouter.delete(
   adminCategoryController.destroy,
 );
 
+adminRouter.patch(
+  "/orders",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminOrderController.update,
+);
+
 adminRouter.get("/orders", adminOrderController.index);
 adminRouter.get("/users", adminUserController.index);
 
