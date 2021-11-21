@@ -110,7 +110,11 @@ adminRouter.patch(
   adminOrderController.update,
 );
 
-adminRouter.get("/orders", adminOrderController.index);
-adminRouter.get("/users", adminUserController.index);
+adminRouter.get(
+  "/orders",
+  checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
+  validateAdmin,
+  adminOrderController.index,
+);
 
 module.exports = adminRouter;

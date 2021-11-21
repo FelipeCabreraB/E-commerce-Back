@@ -4,7 +4,6 @@ const { Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  console.log("hola");
   const orders = await Order.findAll({
     where: { userId: [req.user.id] },
   });

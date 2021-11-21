@@ -20,7 +20,6 @@ async function edit(req, res) {}
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  console.log(req.body.orderId);
   if (req.body.newStatus !== "Select the new status") {
     const order = await Order.findOne({ where: { id: req.body.orderId } });
     order.update({
