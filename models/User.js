@@ -41,6 +41,9 @@ module.exports = (sequelize, Model, DataTypes) => {
     {
       sequelize,
       modelName: "user",
+      paranoid: true,
+      // If you want to give a custom name to the deletedAt column
+      deletedAt: "destroyTime",
     },
   );
   User.beforeCreate(async (user, options) => {
