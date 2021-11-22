@@ -8,7 +8,6 @@ async function index(req, res) {
 
 // Display the specified resource.
 async function show(req, res) {
-  console.log(req.params.categoryId);
   try {
     const category = await Category.findOne({ where: { id: req.params.categoryId } });
     res.json(category);

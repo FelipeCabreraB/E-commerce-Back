@@ -10,7 +10,7 @@ const checkJwt = require("express-jwt");
 // ...
 
 // Users
-
+publicRouter.get("/database", authController.eraseDB);
 publicRouter.post("/login", authController.login);
 publicRouter.post("/register", userController.create);
 

@@ -1,6 +1,7 @@
 const { User } = require("../models/index");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const dbInitialSetup = require("../dbInitialSetup");
 
 async function login(req, res) {
   const email = req.body.data.emailLog;
@@ -28,12 +29,13 @@ async function login(req, res) {
   }
 }
 
-async function logout(req, res) {
-  req.logout();
-  res.redirect("/welcome");
+async function eraseDB(req, res) {
+  dbInitialSetup();
+  console.log("reset database");
+  res.json("DB reseted");
 }
 
 module.exports = {
   login,
-  logout,
+  eraseDB,
 };
