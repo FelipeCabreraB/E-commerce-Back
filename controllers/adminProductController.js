@@ -37,7 +37,6 @@ async function create(req, res) {}
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  console.log("entre!");
   try {
     const form = formidable({
       multiples: false,
@@ -50,8 +49,6 @@ async function store(req, res) {
         "https://hxxxiarcaeviegtlscdm.supabase.co",
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM3MzMyNzE2LCJleHAiOjE5NTI5MDg3MTZ9.iymp1_DQk_eGxHnx9dK7dK5-soSfAGo7aIKmdUeoTIE",
       );
-      console.log("files", files);
-      console.log("fields", fields);
 
       const { data, error } = await supabase.storage
         .from("culto-coffee-img")
@@ -60,35 +57,36 @@ async function store(req, res) {
           upsert: false,
           contentType: files.picture.mimetype,
         });
+      const newProduct = fields;
+      const imageName = files.picture.newFilename;
+      const product = {
+        productName: newProduct.productName,
+        description: newProduct.description,
+        origin: newProduct.origin,
+        farm: newProduct.farm,
+        notes: newProduct.notes,
+        variety: newProduct.variety,
+        height: newProduct.height,
+        process: newProduct.process,
+        rating: newProduct.rating,
+        accessoriesChar1: newProduct.accessoriesChar1,
+        accessoriesChar2: newProduct.accessoriesChar2,
+        accessoriesChar3: newProduct.accessoriesChar3,
+        picture: imageName,
+        price: newProduct.price,
+        stock: newProduct.stock,
+        category: newProduct.category,
+        featured: newProduct.featured,
+      };
+      await Product.create(product);
+      if (product) {
+        res.json({ success: `Product: (name: ${product.productName}) created correctly` });
+      } else {
+        res.json({
+          error: "Error please check the submitted information is in the right format.",
+        });
+      }
     });
-
-    const newProduct = req.body;
-    const product = {
-      productName: newProduct.productName,
-      description: newProduct.description,
-      origin: newProduct.origin,
-      farm: newProduct.farm,
-      notes: newProduct.notes,
-      variety: newProduct.variety,
-      height: newProduct.height,
-      process: newProduct.process,
-      rating: newProduct.rating,
-      accessoriesChar1: newProduct.accessoriesChar1,
-      accessoriesChar2: newProduct.accessoriesChar2,
-      accessoriesChar3: newProduct.accessoriesChar3,
-      price: newProduct.price,
-      stock: newProduct.stock,
-      category: newProduct.category,
-      featured: newProduct.featured,
-    };
-    await Product.create(product);
-    if (product) {
-      res.json({ success: `Product: (name: ${product.productName}) created correctly` });
-    } else {
-      res.json({
-        error: "Error please check the submitted information is in the right format.",
-      });
-    }
   } catch (error) {
     console.log(error);
   }
@@ -100,37 +98,77 @@ async function edit(req, res) {}
 // Update the specified resource in storage.
 async function update(req, res) {
   try {
-    const updatedProduct = req.body;
-    const product = await Product.findOne({
-      where: { id: updatedProduct.id },
+    const form = formidable({
+      multiples: false,
+      keepExtensions: true,
     });
+    form.parse(req, async (err, fields, files) => {
+      // Create a single supabase client for interacting with your database
+      const supabase = createClient(
+        "https://hxxxiarcaeviegtlscdm.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM3MzMyNzE2LCJleHAiOjE5NTI5MDg3MTZ9.iymp1_DQk_eGxHnx9dK7dK5-soSfAGo7aIKmdUeoTIE",
+      );
 
-    product.update({
-      productName: updatedProduct.productName,
-      description: updatedProduct.description,
-      origin: updatedProduct.origin,
-      farm: updatedProduct.farm,
-      notes: updatedProduct.notes,
-      variety: updatedProduct.variety,
-      height: updatedProduct.height,
-      process: updatedProduct.process,
-      rating: updatedProduct.rating,
-      accessoriesChar1: updatedProduct.accessoriesChar1,
-      accessoriesChar2: updatedProduct.accessoriesChar2,
-      accessoriesChar3: updatedProduct.accessoriesChar3,
-      price: updatedProduct.price,
-      stock: updatedProduct.stock,
-      category: updatedProduct.category,
-      featured: updatedProduct.featured,
-    });
-
-    if (product) {
-      res.json({ success: `Product id: ${product.id}, updated correctly` });
-    } else {
-      res.json({
-        error: "Product not found, please make sure the product you´re trying to update exist",
+      const { data, error } = await supabase.storage
+        .from("culto-coffee-img")
+        .upload(`${files.picture.newFilename}`, fs.createReadStream(files.picture.filepath), {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: files.picture.mimetype,
+        });
+      const updatedProduct = fields;
+      const imageName = files.picture.newFilename;
+      const product = await Product.findOne({
+        where: { id: updatedProduct.id },
       });
-    }
+      if (files.picture.originalFilename !== "") {
+        product.update({
+          productName: updatedProduct.productName,
+          description: updatedProduct.description,
+          origin: updatedProduct.origin,
+          farm: updatedProduct.farm,
+          notes: updatedProduct.notes,
+          variety: updatedProduct.variety,
+          height: updatedProduct.height,
+          process: updatedProduct.process,
+          rating: updatedProduct.rating,
+          accessoriesChar1: updatedProduct.accessoriesChar1,
+          accessoriesChar2: updatedProduct.accessoriesChar2,
+          accessoriesChar3: updatedProduct.accessoriesChar3,
+          picture: imageName,
+          price: updatedProduct.price,
+          stock: updatedProduct.stock,
+          category: updatedProduct.category,
+          featured: updatedProduct.featured,
+        });
+      } else {
+        product.update({
+          productName: updatedProduct.productName,
+          description: updatedProduct.description,
+          origin: updatedProduct.origin,
+          farm: updatedProduct.farm,
+          notes: updatedProduct.notes,
+          variety: updatedProduct.variety,
+          height: updatedProduct.height,
+          process: updatedProduct.process,
+          rating: updatedProduct.rating,
+          accessoriesChar1: updatedProduct.accessoriesChar1,
+          accessoriesChar2: updatedProduct.accessoriesChar2,
+          accessoriesChar3: updatedProduct.accessoriesChar3,
+          price: updatedProduct.price,
+          stock: updatedProduct.stock,
+          category: updatedProduct.category,
+          featured: updatedProduct.featured,
+        });
+      }
+      if (product) {
+        res.json({ success: `Product id: ${product.id}, updated correctly` });
+      } else {
+        res.json({
+          error: "Product not found, please make sure the product you´re trying to update exist",
+        });
+      }
+    });
   } catch (error) {
     console.log(error);
   }

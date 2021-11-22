@@ -13,10 +13,16 @@ module.exports = async () => {
   const productOrders = [];
 
   //SEEDER DE CATEGORIES
+  const categoryName = ["Coffee", "Accessories"];
+  const categoryDescription = [
+    "A selection of the finest, fresh ground coffees",
+    "The best accessories to prepare a delicious coffee",
+  ];
+
   for (let i = 0; i < 2; i++) {
     categories.push({
-      categoryName: faker.lorem.word(12),
-      description: faker.lorem.sentence(3),
+      categoryName: categoryName[i],
+      description: categoryDescription[i],
       picture: "picture.jpg",
     });
   }
@@ -64,12 +70,12 @@ module.exports = async () => {
   ];
   const accPrice = [2590, 2590, 4990, 2290, 3990, 4990];
   const accPicture = [
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0005_Layer-9.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0008_Layer-4.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0002_Layer-13.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0009_Layer-3.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0003_Layer-11.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2021/08/Kiosco__0010_Layer-2.jpg",
+    "AeropressGo.jpg",
+    "Aeropress.jpg",
+    "HarioGrinder.jpg",
+    "V60Hario.jpg",
+    "KitV60Hario.jpg",
+    "SwanNeckPitcher.jpg",
   ];
 
   const featuredAcc = [false, false, false, true, false, false];
@@ -136,12 +142,12 @@ module.exports = async () => {
   const rating = [87, 84, 86, 83, 84, 86];
   const price = [620, 590, 620, 550, 620, 750];
   const picture = [
-    "https://cultocafe.uy/wp-content/uploads/2021/07/Kiosco__0001_Layer-14.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09426.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2020/07/WOMEN.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09432.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09436.jpg",
-    "https://cultocafe.uy/wp-content/uploads/2020/03/DSC09435.jpg",
+    "Timbo.jpg",
+    "Nauyaca.jpg",
+    "Women.jpg",
+    "Sabanera.jpg",
+    "Boa.jpg",
+    "MambaNegra.jpg",
   ];
 
   const featuredCoff = [true, false, true, true, false, true];
