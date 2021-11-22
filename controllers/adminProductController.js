@@ -1,4 +1,7 @@
 const { Product } = require("../models");
+const formidable = require("formidable");
+const { createClient } = require("@supabase/supabase-js");
+const fs = require("fs");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -34,7 +37,31 @@ async function create(req, res) {}
 
 // Store a newly created resource in storage.
 async function store(req, res) {
+  console.log("entre!");
   try {
+    const form = formidable({
+      multiples: false,
+      keepExtensions: true,
+    });
+
+    form.parse(req, async (err, fields, files) => {
+      // Create a single supabase client for interacting with your database
+      const supabase = createClient(
+        "https://hxxxiarcaeviegtlscdm.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM3MzMyNzE2LCJleHAiOjE5NTI5MDg3MTZ9.iymp1_DQk_eGxHnx9dK7dK5-soSfAGo7aIKmdUeoTIE",
+      );
+      console.log("files", files);
+      console.log("fields", fields);
+
+      const { data, error } = await supabase.storage
+        .from("culto-coffee-img")
+        .upload(`${files.picture.newFilename}`, fs.createReadStream(files.picture.filepath), {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: files.picture.mimetype,
+        });
+    });
+
     const newProduct = req.body;
     const product = {
       productName: newProduct.productName,
