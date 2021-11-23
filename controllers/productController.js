@@ -21,7 +21,9 @@ async function show(req, res) {
 
 async function showSearch(req, res) {
   let productName1 = req.params.productName.toLowerCase();
+
   const sequelize = new Sequelize("sqlite::memory:");
+
   const searchedProducts = await Product.findAll({
     limit: 10,
     where: {
@@ -32,6 +34,7 @@ async function showSearch(req, res) {
       ),
     },
   });
+
   res.json(searchedProducts);
 }
 
