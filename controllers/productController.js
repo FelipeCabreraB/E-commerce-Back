@@ -1,4 +1,6 @@
 const { Product } = require("../models");
+const { Sequelize } = require("sequelize");
+const sequelize = new Sequelize("sqlite::memory:");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -16,6 +18,22 @@ async function indexFeatured(req, res) {
 async function show(req, res) {
   const product = await Product.findOne({ where: { productName: req.params.productName } });
   res.json(product);
+}
+
+async function showSearch(req, res) {
+  let productName1 = req.params.productName.toLowerCase();
+
+  const searchedProducts = await Product.findAll({
+    limit: 10,
+    where: {
+      productName: sequelize.where(
+        sequelize.fn("LOWER", sequelize.col("productName")),
+        "LIKE",
+        "%" + productName1 + "%",
+      ),
+    },
+  });
+  res.json(searchedProducts);
 }
 
 // Show the form for creating a new resource
@@ -40,6 +58,7 @@ module.exports = {
   index,
   indexFeatured,
   show,
+  showSearch,
   create,
   store,
   edit,
