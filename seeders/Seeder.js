@@ -200,6 +200,8 @@ module.exports = async () => {
 
   const featuredCoff = [true, false, true, true, false, true, false, false, false];
 
+  const stockCoff = [10, 13, 15, 16, 0, 20, 19, 8, 11];
+
   for (let i = 0; i < 9; i++) {
     productsCoff.push({
       productName: productName[i],
@@ -213,7 +215,7 @@ module.exports = async () => {
       rating: rating[i],
       picture: picture[i],
       price: price[i],
-      stock: i + 10,
+      stock: stockCoff[i],
       featured: featuredCoff[i],
       categoryId: 1,
     });
