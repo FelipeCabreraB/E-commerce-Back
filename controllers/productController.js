@@ -1,5 +1,5 @@
 const { Product } = require("../models");
-//const { Sequelize } = require("sequelize");
+const { Sequelize } = require("sequelize");
 //const sequelize = new Sequelize("sqlite::memory:");
 
 // Display a listing of the resource.
