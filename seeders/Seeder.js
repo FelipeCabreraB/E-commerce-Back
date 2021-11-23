@@ -96,7 +96,17 @@ module.exports = async () => {
   }
 
   //SEEDER DE PRODUCTSCOFF
-  const productName = ["Timbo", "Nauyaca", "Women", "Sabanera", "Boa", "Mamba Negra"];
+  const productName = [
+    "Timbo",
+    "Nauyaca",
+    "Women",
+    "Sabanera",
+    "Boa",
+    "Mamba Negra",
+    "Najá",
+    "Surucucú",
+    "Culebra",
+  ];
   const description = [
     "In 2005 the Santa Ana Volcano erupted for the first time in 85 years and its ashes became natural fertilizer for the entire area of El Salvador. The Las Nubes farm –with more than 100 years producing high quality coffee– benefited from this sudden change in the character of the soil, which resulted in a rich acidity in the bean, manifested in the particular “shine” of each sip.",
     "Mexico has experienced an explosion in specialty coffee production. This is due to the excellent climatic conditions and rich volcanic soils found in the south of the country. Likewise, the country stands out for its organic coffee production, which occupies a large percentage of total production.",
@@ -104,6 +114,9 @@ module.exports = async () => {
     "The generous shadows of the Acatenango Valley give birth to this fascinating grain, which holds a tradition in a cup that dates back to the mid-19th century. Grown in the middle of the volcanic belt, this bean stands out for its marked acidity, which combines perfectly with the traditional chocolate edge of local coffee.",
     "Opaced for decades by the Kenyan and Ethiopian coffee industry, Rwanda only entered the specialty coffee board in the past two decades. Quickly, its grains of floral and fruity notes at the same time, ceased to be the best kept secret in Africa, to be a mandatory stop for cuppings around the world.",
     "The volcanic memory of the slopes of Mount Kenya marks these four varieties of the ‘Nyeri County’ region by fire. They follow a process of washing and drying in ‘African beds’ characteristic of the area, which decants into a cup of acidic notes and an intense body.",
+    "In Ethiopia, the cultivation and processing of the plant is inseparable from the local culture, and its emblematic flavor characterizes the country before the world. This grain from the Yirgacheffe region demonstrates that excellence with complex characteristics, notes of orange blossom and peels. An ancestral flavor, a pleasant ritual.",
+    "This organic grain, from the mountainous region of Cajamarca, follows the washing process that preserves the intense flavors of the area, offering us a vanilla and smoky cup like tobacco.",
+    "Surrounded by lush and rich vegetation, Nicaraguan crops grow on the mineral fertility of the volcanic soil and are sheltered by the humid climate of the tropics. The result is extremely profitable: a coffee with effusive aromas such as cardamom and flavors with connotations of light caramel.",
   ];
   const origin = [
     "El salvador",
@@ -112,6 +125,9 @@ module.exports = async () => {
     "Guatemala, Valle de Acatenango",
     "Rwanda, Rustiro district",
     "Kenya, Nyeri County",
+    "Ethiopia, Yirgacheffe",
+    "Peru, Cajamarca",
+    "Nicaragua, Matagalpa",
   ];
   const farm = [
     "Las Nubes",
@@ -119,6 +135,9 @@ module.exports = async () => {
     "Capricornio Cooperative",
     "Chalabal Estrella / El general",
     "Various coffee growers: Bugoyi CWS",
+    "Various coffee growers",
+    "Various coffee growers",
+    "Various coffee growers",
     "Various coffee growers",
   ];
   const notes = [
@@ -128,6 +147,9 @@ module.exports = async () => {
     "Yellow plums, caramel sugar, chocolate",
     "Lime, cocoa and sour cream",
     "Hibiscus flower, cider, blueberry",
+    "Cream soda, hairless, random flower",
+    "Tangerine, vanilla, blond tobacco",
+    "Quince, light caramel, cardamom",
   ];
   const variety = [
     "Red Bourbon",
@@ -136,11 +158,34 @@ module.exports = async () => {
     "Catimor, Catuai, Typica",
     "Red Bourbon",
     "Batian SL28",
+    "Tipica",
+    "Catimor, Caturra, Tipica",
+    "Catimor, Caturra",
   ];
-  const height = ["1400 m", "1200 m", "650 m", "1750 m", "1500 - 1900 m", "1800 m"];
-  const process = ["Honey", "Washed", "Honey", "Washed", "Washed", "Washed"];
-  const rating = [87, 84, 86, 83, 84, 86];
-  const price = [620, 590, 620, 550, 620, 750];
+  const height = [
+    "1400 m",
+    "1200 m",
+    "650 m",
+    "1750 m",
+    "1500 - 1900 m",
+    "1800 m",
+    "2000 m",
+    "1700 m",
+    "1200 m",
+  ];
+  const process = [
+    "Honey",
+    "Washed",
+    "Honey",
+    "Washed",
+    "Washed",
+    "Washed",
+    "Washed",
+    "Washed",
+    "Washed",
+  ];
+  const rating = [87, 84, 86, 83, 84, 86, 85, 83, 82];
+  const price = [620, 590, 620, 550, 620, 750, 650, 500, 450];
   const picture = [
     "Timbo.jpg",
     "Nauyaca.jpg",
@@ -148,11 +193,14 @@ module.exports = async () => {
     "Sabanera.jpg",
     "Boa.jpg",
     "MambaNegra.jpg",
+    "Naja.jpg",
+    "Surucucu.jpg",
+    "Culebra.jpg",
   ];
 
-  const featuredCoff = [true, false, true, true, false, true];
+  const featuredCoff = [true, false, true, true, false, true, false, false, false];
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 9; i++) {
     productsCoff.push({
       productName: productName[i],
       description: description[i],
