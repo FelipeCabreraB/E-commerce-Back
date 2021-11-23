@@ -30,7 +30,7 @@ publicRouter.patch(
 publicRouter.get("/products/:categoryId", productController.index);
 publicRouter.get("/featured/products", productController.indexFeatured);
 publicRouter.get("/product/:productName", productController.show);
-publicRouter.get("/search/products/:productName", productController.showSearch);
+//publicRouter.get("/search/products/:productName", productController.showSearch);
 publicRouter.get(
   "/orders",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
