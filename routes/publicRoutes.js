@@ -26,7 +26,6 @@ publicRouter.patch(
 );
 
 //Products
-// Products
 
 publicRouter.get("/products/:categoryId", productController.index);
 publicRouter.get("/featured/products", productController.indexFeatured);
