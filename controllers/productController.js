@@ -1,6 +1,5 @@
 const { Product } = require("../models");
 const { Sequelize } = require("sequelize");
-//const sequelize = new Sequelize("sqlite::memory:");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -22,7 +21,7 @@ async function show(req, res) {
 
 async function showSearch(req, res) {
   let productName1 = req.params.productName.toLowerCase();
-
+  const sequelize = new Sequelize("sqlite::memory:");
   const searchedProducts = await Product.findAll({
     limit: 10,
     where: {
