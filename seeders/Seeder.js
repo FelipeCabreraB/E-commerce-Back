@@ -222,9 +222,25 @@ module.exports = async () => {
   }
 
   //SEEDER DE ORDERS
-  const statusOrder = ["Completed", "Pending", "Completed", "Pending", "Completed", "Pending"];
+  const statusOrder = [
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+    "Pending",
+    "Completed",
+  ];
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 15; i++) {
     orders.push({
       quantity: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
       statusOrder: statusOrder[i],
@@ -233,7 +249,7 @@ module.exports = async () => {
   }
 
   //SEEDER DE USER
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 30; i++) {
     users.push({
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
@@ -256,6 +272,18 @@ module.exports = async () => {
     phone: 6018473,
     completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
     role: "admin",
+  };
+
+  //CREACIÓN DEL USER
+  const user = {
+    firstname: "User",
+    lastname: "UserLastname",
+    email: "user@user.com",
+    password: "123456",
+    address: faker.address.streetAddress(),
+    phone: 6018473,
+    completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+    role: "client",
   };
 
   //SEEDER DE PRODUCT ORDERS
@@ -294,6 +322,8 @@ module.exports = async () => {
   console.log("[Database] Se corrió el seeder de User.");
   await User.create(admin);
   console.log("[Database] Se creó el Admin.");
+  await User.create(user);
+  console.log("[Database] Se creó el User.");
   await Order.bulkCreate(orders);
   console.log("[Database] Se corrió el seeder de Order.");
   await Product_Order.bulkCreate(productOrders);
