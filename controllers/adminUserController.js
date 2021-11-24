@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 async function index(req, res) {
   try {
     const usersPage = Number(req.params.page);
-    const usersPerPage = 3; //Define the number of users you want to see per page
+    const usersPerPage = 10; //Define the number of users you want to see per page
     const numberOfUsers = await User.count();
     const numberOfPages = Math.ceil(numberOfUsers / usersPerPage);
 

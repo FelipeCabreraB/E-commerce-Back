@@ -223,28 +223,38 @@ module.exports = async () => {
 
   //SEEDER DE ORDERS
   const statusOrder = [
-    "Completed",
+    "Pending",
+    "Pending",
+    "Pending",
     "Pending",
     "Completed",
     "Pending",
+    "Cancelled",
+    "Pending",
+    "Completed",
+    "Completed",
     "Completed",
     "Pending",
     "Completed",
+    "Cancelled",
+    "Completed",
     "Pending",
+    "Cancelled",
+    "Pending",
+    "Completed",
+    "Completed",
     "Completed",
     "Pending",
     "Completed",
-    "Pending",
-    "Completed",
-    "Pending",
+    "Cancelled",
     "Completed",
   ];
 
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 25; i++) {
     orders.push({
       quantity: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
       statusOrder: statusOrder[i],
-      userId: Math.floor(Math.random() * (6 - 1 + 1)) + 1,
+      userId: Math.floor(Math.random() * (20 - 1 + 1)) + 1,
     });
   }
 
@@ -297,18 +307,32 @@ module.exports = async () => {
     "Filtered",
     "French",
     "Moka",
+    "Expresso",
+    "Filtered",
+    "French",
+    "Moka",
+    "Cold Brew",
+    "Grain",
+    "Aeroress",
+    "Turkish coffee",
+    "French",
+    "Aeroress",
+    "Expresso",
   ];
 
-  const product_id = [3, 2, 1, 7, 8, 9];
-  const product_price = [4990, 2590, 2590, 620, 590, 620];
+  const product_id = [3, 2, 1, 7, 8, 9, 10, 13, 4, 6, 12, 9, 1, 2, 15, 7, 3, 9, 4, 5];
+  const product_price = [
+    620, 590, 620, 650, 590, 620, 620, 590, 620, 650, 590, 620, 620, 590, 620, 650, 590, 620, 610,
+    670,
+  ];
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 20; i++) {
     productOrders.push({
-      quantity: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
+      quantity: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
       productId: product_id[i],
       price: product_price[i],
       grindingType: grinding_type[i],
-      orderId: Math.floor(Math.random() * (6 - 1 + 1)) + 1,
+      orderId: Math.floor(Math.random() * (25 - 1 + 1)) + 1,
     });
   }
 

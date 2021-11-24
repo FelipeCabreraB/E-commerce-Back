@@ -7,7 +7,7 @@ const fs = require("fs");
 async function index(req, res) {
   try {
     const productPage = Number(req.params.page);
-    const productsPerPage = 3; //Define the number of products you want to see per page
+    const productsPerPage = 5; //Define the number of products you want to see per page
     const numberOfProducts = await Product.count();
     const numberOfPages = Math.ceil(numberOfProducts / productsPerPage);
 

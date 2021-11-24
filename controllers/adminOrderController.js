@@ -2,8 +2,22 @@ const { Order } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const orders = await Order.findAll({ order: [["createdAt", "DESC"]] });
-  res.json(orders);
+  try {
+    console.log("entre");
+    const orderPage = Number(req.params.page);
+    const ordersPerPage = 10; //Define the number of products you want to see per page
+    const numberOfOrders = await Order.count();
+    const numberOfPages = Math.ceil(numberOfOrders / ordersPerPage);
+
+    const orders = await Order.findAll({
+      limit: ordersPerPage,
+      offset: (orderPage - 1) * ordersPerPage,
+    });
+
+    res.json({ orders, numberOfPages });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Display the specified resource.
