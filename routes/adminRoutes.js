@@ -111,7 +111,7 @@ adminRouter.patch(
 );
 
 adminRouter.get(
-  "/orders",
+  "/orders/:page",
   checkJwt({ secret: process.env.APP_JWT_SECRET, algorithms: ["HS256"] }),
   validateAdmin,
   adminOrderController.index,

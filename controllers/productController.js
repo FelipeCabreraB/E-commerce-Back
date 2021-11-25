@@ -1,6 +1,5 @@
 const { Product } = require("../models");
-const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
+const { sequelize } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -33,6 +32,7 @@ async function showSearch(req, res) {
       ),
     },
   });
+
   res.json(searchedProducts);
 }
 
