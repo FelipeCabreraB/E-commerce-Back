@@ -1,5 +1,5 @@
 const faker = require("faker");
-const { Category, Admin, Order, Product, User, Product_Order } = require("../models");
+const { Category, Order, Product, User, Product_Order } = require("../models");
 const bcrypt = require("bcryptjs");
 
 faker.locale = "es";
@@ -291,7 +291,7 @@ module.exports = async () => {
     email: "user@user.com",
     password: "123456",
     address: faker.address.streetAddress(),
-    phone: 6018473,
+    phone: 26018473,
     completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
     role: "client",
   };
@@ -320,11 +320,12 @@ module.exports = async () => {
     "Expresso",
   ];
 
-  const product_id = [3, 2, 1, 7, 8, 9, 10, 13, 4, 6, 12, 9, 1, 2, 15, 7, 3, 9, 4, 5];
+  const product_id = [3, 2, 1, 7, 8, 9, 10, 13, 4, 6, 12, 9, 1, 2, 15, 7, 8, 9, 4, 5];
   const product_price = [
     620, 590, 620, 650, 590, 620, 620, 590, 620, 650, 590, 620, 620, 590, 620, 650, 590, 620, 610,
     670,
   ];
+  const order_id = [5, 6, 10, 11, 15, 22, 1, 20, 14, 16, 2, 25, 4, 9, 13, 8, 5, 7, 21, 19];
 
   for (let i = 0; i < 20; i++) {
     productOrders.push({
@@ -332,7 +333,7 @@ module.exports = async () => {
       productId: product_id[i],
       price: product_price[i],
       grindingType: grinding_type[i],
-      orderId: Math.floor(Math.random() * (25 - 1 + 1)) + 1,
+      orderId: order_id[i],
     });
   }
 

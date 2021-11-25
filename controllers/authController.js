@@ -30,7 +30,7 @@ async function login(req, res) {
 }
 
 async function eraseDB(req, res) {
-  dbInitialSetup();
+  await dbInitialSetup();
   console.log("reset database");
   res.json("DB reseted");
 }

@@ -4,7 +4,6 @@ const { Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  console.log("entre");
   const orders = await Order.findAll({
     where: { userId: [req.user.id] },
   });
@@ -61,6 +60,7 @@ async function store(req, res) {
   const cart = req.body.cart;
   const userId = req.body.userId;
   const order = { statusOrder: "Pending", userId: userId };
+
   await Order.create(order);
 
   const createdOrder = await Order.findOne({
@@ -69,6 +69,7 @@ async function store(req, res) {
   });
 
   const preProductOrder = [];
+  console.log(createdOrder);
 
   for (const item of cart) {
     preProductOrder.push({
