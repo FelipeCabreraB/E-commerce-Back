@@ -32,7 +32,7 @@ async function login(req, res) {
 async function eraseDB(req, res) {
   await dbInitialSetup();
   console.log("reset database");
-  res.json("DB reseted");
+  res.json("Database reset completed");
 }
 
 module.exports = {
