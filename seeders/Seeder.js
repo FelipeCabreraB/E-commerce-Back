@@ -240,7 +240,7 @@ module.exports = async () => {
       email: faker.internet.email(),
       password: "$2a$10$YYrM5ZnmfO7CWWNS040ZPOh8qGegyUpeXhCOJzlR.J8euLSXQNCba", // password es 123456
       address: faker.address.streetAddress(),
-      phone: 6018473,
+      phone: 601847368,
       completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
       role: "client",
     });
@@ -253,7 +253,7 @@ module.exports = async () => {
     email: "admin@admin.com",
     password: "123456",
     address: faker.address.streetAddress(),
-    phone: 6018473,
+    phone: 601847368,
     completedOrders: Math.floor(Math.random() * (8 - 1 + 1)) + 1,
     role: "admin",
   };
