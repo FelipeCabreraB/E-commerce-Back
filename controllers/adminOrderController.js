@@ -12,6 +12,7 @@ async function index(req, res) {
     const orders = await Order.findAll({
       limit: ordersPerPage,
       offset: (orderPage - 1) * ordersPerPage,
+      order: [["id", "ASC"]],
     });
 
     res.json({ orders, numberOfPages });

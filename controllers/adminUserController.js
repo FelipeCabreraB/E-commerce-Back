@@ -12,6 +12,7 @@ async function index(req, res) {
     const users = await User.findAll({
       limit: usersPerPage,
       offset: (usersPage - 1) * usersPerPage,
+      order: [["id", "ASC"]],
     });
     res.json({ users, numberOfPages });
   } catch (error) {

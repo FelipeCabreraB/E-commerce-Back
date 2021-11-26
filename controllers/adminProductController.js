@@ -14,6 +14,7 @@ async function index(req, res) {
     const products = await Product.findAll({
       limit: productsPerPage,
       offset: (productPage - 1) * productsPerPage,
+      order: [["id", "ASC"]],
     });
 
     res.json({ products, numberOfPages });

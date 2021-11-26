@@ -2,7 +2,7 @@ const { Category } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const categories = await Category.findAll();
+  const categories = await Category.findAll({ order: [["id", "ASC"]] });
   res.json(categories);
 }
 
